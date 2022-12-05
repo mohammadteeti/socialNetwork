@@ -1,0 +1,64 @@
+<!-- dwitter/templates/dwitter/profile_list.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="column">
+    <h1>All Profiles</h1>
+    {% for profile in profiles %}
+    <div class="block">
+        <div class="card">
+            <a href="{% url 'dwitter:profile' profile.id %}">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-48x48">
+                                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4">
+                                {{ profile.user.username }}
+                            </p>
+                            <p class="subtitle is-6">
+                                @{{ profile.user.username|lower }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <!-- <div style="margin-left:20%;float:center;">
+        <small> Followed_By:</small>
+        <ul>
+            {% for followed_by in profile.followed_by.all %}
+            <li>{{ followed_by }}</li>
+            {% endfor %}
+            </ul>
+        </div> -->
+        </div>
+    </div>
+
+
+
+    {% endfor %}
+    <h1>You are Followed By</h1>
+    {%for followed_by in user.profile.followed_by.all%}
+    <div class="block">
+        <div class="card">
+
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-4">
+                            <a href="{% url 'dwitter:profile' followed_by.id %}">
+                                {{ followed_by}}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}

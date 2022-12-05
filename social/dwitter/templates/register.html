@@ -1,0 +1,111 @@
+{%extends 'base.html'%}
+{%block CSS%}
+
+<style>
+    form {
+        margin: auto;
+        box-shadow: -3px -3px 10px 5px rgb(17, 61, 17);
+        border: 1px solid rgb(188, 245, 188);
+
+    }
+
+    html {
+        background-color: bisque;
+    }
+
+    form li,
+    span {
+        display: none;
+    }
+
+
+    form input {
+        display: block;
+    }
+
+    form .password-confirm {
+        margin-bottom: 20px;
+    }
+</style>
+{%endblock%}
+{%block content%}
+</div> <!-- Cancel columns from base and ovverride my own columns desing-->
+
+{%if messages %}
+{%for message in messages%}
+<div class="columns">
+    <div class="column is-fullwidth ">
+        <div class="content ">
+            <p class="subtitle is-4 has-text-danger">
+                {{message}}
+            </p>
+            {%if errors%}
+            <ul class="errors">
+                {%for err in errors%}
+                <li>{{err}}</li>
+                {%endfor%}
+            </ul>
+            {%endif%}
+
+        </div>
+    </div>
+</div>
+{%endfor%}
+{%endif%}
+
+<div class="columns">
+    <div class="column is-three-thirds ">
+        <div class="content is-flex is-vcentered  has-text-dark ">
+            <form method="post" class="has-background-success">
+                {%csrf_token%}
+                <div class="control first-name">
+                    <label for="id_first_name"> First Name:</label>{{form.first_name}}
+                </div>
+
+                <div class="control last-name">
+                    <label for="id_last_name"> Last Name:</label>{{form.last_name}}
+                </div>
+
+                <div class="control username">
+                    <label for="id_username"> User Name:</label>{{form.username}}
+                </div>
+
+
+                <div class="control email">
+                    <label for="id_first_name">Email</label>{{form.email}}
+                </div>
+
+
+                <div class="control password">
+                    <label for="id_first_name">Password:</label>{{form.password1}}
+                </div>
+
+                <div class="control password-confirm">
+                    <label for="id_first_name">Confirm Password:</label>{{form.password2}}
+                </div>
+
+
+                <div class="content has-text-centered">
+                    <button class="button submit  mb-5 is-dark ">
+                        Submit &nbsp;<mark>&#8594;</mark>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="column is-one-third">
+        <div class="content">
+            <div class="card mb-5">
+                <a href="{% url 'dwitter:login' %}">
+                    Have account ? , Log-in now
+                </a>
+            </div>
+            <div class="card mb-5">
+                <a href="{% url 'dwitter:dashboard' %}">
+                    Back To Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

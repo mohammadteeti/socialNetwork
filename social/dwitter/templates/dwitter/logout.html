@@ -1,0 +1,59 @@
+{%extends 'base.html'%}
+
+
+{%block CSS%}
+<style>
+    .wave .title {
+        color: rgb(9, 94, 94);
+
+        font-family: Virgil;
+    }
+
+    .wave {
+        margin: auto;
+        margin-top: 50px;
+        padding: 20px;
+    }
+
+    .login {
+        color: rebeccapurple;
+        margin-top: 10px;
+        text-align: center;
+        font-family: virgil;
+        font-size: 24px;
+    }
+
+    .login:hover {
+        color: rgb(4, 26, 155);
+        margin-top: 10px;
+        text-align: center;
+        font-family: virgil;
+        font-size: 48px;
+    }
+</style>
+{%endblock%}
+
+{%block content%}
+
+<div class="wave">
+    <h1 class="title">
+        see you in a bit 👋
+    </h1>
+
+    <div class="link" tabindex="1">
+        <a href="{% url 'dwitter:login'%}">
+            <h1 class="login ">
+                Login Again
+            </h1>
+        </a>
+    </div>
+    <div class="link" tabindex="2">
+        <a href="{% url 'dwitter:dashboard'%}">
+            <h1 class="login ">
+                To Dashboard
+            </h1>
+        </a>
+    </div>
+</div>
+
+{%endblock%}

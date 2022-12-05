@@ -1,0 +1,132 @@
+<!-- dwitter/templates/dwitter/dashboard.html -->
+{% extends 'base.html' %}
+
+{%block CSS%}
+<style>
+    .submit {
+        margin-top: 5px;
+        text-align: center;
+
+
+    }
+
+    .box {
+        font-family: Virgil;
+        font-size: 20px;
+    }
+
+    .box span {
+        display: block;
+        font-family: 'Times New Roman';
+        margin-top: 10px;
+        font-size: 14px;
+    }
+</style>
+{%endblock%}
+{% block content %}
+
+</div><!-- Cancell columns from base.html and override my own columns-->
+
+<div class="columns ">
+    <div class="column is-fullwidth ">
+        <div class="content">
+            {%if messages %}
+            {% for message in messages%}
+            <h3 class="title is-4 has-text-success">
+                {{message}}
+            </h3>
+            {%endfor%}
+            {%endif%}
+        </div>
+    </div>
+</div>
+
+
+<div class="columns">
+    {% if dweets%}
+    <div class="column is-one-third">
+        {% for dweet in dweets%}
+        <div class="box">
+            {{ dweet.body }}
+            <span class="extra is-small has-text-grey-light">
+                ({{ dweet.created_at }} by {{ dweet.user.username }}
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+    {%endif%}
+
+
+    <div class="column {%if dweets%} is-one-third {%else%} is-two-thirds {%endif%}">
+        <form method="post">
+            {%csrf_token%}
+            {{ form.as_p }}
+            <div class="submit">
+                <input class="button  is-primary is-fullwidth is-normal" type="submit" value="submit">
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <div class="column is-one-third">
+        {%if user.is_authenticated %}
+        <div class="card mb-5">
+            <a href="{% url 'dwitter:profile_list' %}">
+                <button class="button is-dark is-Primary is-fullwidth">
+                    Profiles
+                </button>
+            </a>
+        </div>
+
+        <div class="card mb-5">
+            <a href="{% url 'dwitter:profile' user.id %}">
+                <button class="button is-dark is-Primary is-fullwidth">
+                    My Profile
+                </button>
+            </a>
+
+        </div>
+
+        <div class="card mb-5">
+            <a href="{% url 'dwitter:password_change' %}">
+                <button class="button is-dark is-Primary is-fullwidth">
+                    Change Password
+                </button>
+            </a>
+
+        </div>
+
+        <div class="card mb-5">
+            <a href="{% url 'dwitter:logout' %}">
+                <button class="button is-dark is-Primary is-fullwidth">
+                    Logout
+                </button>
+            </a>
+
+        </div>
+
+        {%else%}
+        <div class="card mb-5">
+            <a href="{% url 'social:login'%}">
+                <button class="button is-dark is-Primary is-fullwidth">
+                    Login
+                </button>
+            </a>
+
+        </div>
+
+        <div class="card mb-5">
+            <a href="{% url 'dwitter:register'%}">
+                <button class="button is-dark is-Primary is-fullwidth">
+                    Sign Up
+                </button>
+            </a>
+
+        </div>
+
+        {%endif%}
+    </div>
+</div>
+{% endblock content %}
