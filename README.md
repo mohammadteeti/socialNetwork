@@ -28,6 +28,11 @@ a simple implementation of few features found in a social netwok web application
       ### On Windows:
          Before Running server use  ` set DJANGO_DATABASE="mysqlDB" `  to add mysqlDB to  classpath 
          
+         
+   # Video:
+https://user-images.githubusercontent.com/37085987/205704440-2efc6bab-5fe0-488b-8381-c11790a841e9.mp4
+
+
        
 
 
