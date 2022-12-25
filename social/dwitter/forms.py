@@ -25,7 +25,14 @@ class DweetForm(forms.ModelForm):
 class RegisterForm(UserCreationForm):
 
     email = forms.EmailField()
-
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for k,v in self.fields.items():
+            v.widget.attrs.update({
+                "class":"input is-rounded"
+            })
+            
     class Meta:
         model = User
         fields = [
@@ -36,3 +43,5 @@ class RegisterForm(UserCreationForm):
             "password1",
             "password2",
         ]
+        
+        
