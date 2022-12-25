@@ -28,9 +28,34 @@ a simple implementation of few features found in a social netwok web application
       ### On Windows:
          Before Running server use  ` set DJANGO_DATABASE="mysqlDB" `  to add mysqlDB to  classpath 
          
-         
+         you will need to create a new Mysql database and name it __dwitter__ for this example ,with the user name and password shown below 
+         ``` pyhton
+                DATABASES = {
+                            'default': {
+                            'ENGINE': 'django.db.backends.sqlite3',
+                            'NAME': BASE_DIR / 'db.sqlite3',
+                            }
+                            ,
+                            'mysqlDB':{
+                            'ENGINE': 'django.db.backends.mysql',
+                            'NAME': 'dwitter',
+                            'HOST':'127.0.0.1',
+                            'PORT':'3306',
+                            'USER':'root',
+                            'PASSWORD':'Mohammad@#$123',
+                                }
+                            }
+                            default_database=environ.get('DJANGO_DATABASE','default')
+                            DATABASES['default'] = DATABASES[default_database]
+
+         ```
+         Note that the database should be created and __migrations__ must be made to create all tables before exporting the environment variable 
    # Video:
-https://user-images.githubusercontent.com/37085987/205704440-2efc6bab-5fe0-488b-8381-c11790a841e9.mp4
+
+
+https://user-images.githubusercontent.com/37085987/209462894-ea5c534a-e230-48a4-a3f8-b9508ec2c01c.mp4
+
+
 
 
        
